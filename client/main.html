@@ -1,0 +1,85 @@
+<head>
+    <title>mini-facebook</title>
+</head>
+
+<body>
+
+{{> navbar}}
+<div class="container col-md-offset-1 col-md-10">
+
+    {{#if currentUser}}
+    <div class="row">
+        {{> addPost}}
+    </div>
+    {{/if}}
+    <div class="row">
+        {{> posts}}
+    </div>
+
+</div>
+
+
+</body>
+
+<template name="navbar">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Mini-facebook</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Following</a></li>
+                <li><a href="#">UserName : {{getUsername}}</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><p class="navbar-text "> {{> loginButtons  }}</p></li>
+            </ul>
+        </div>
+    </nav>
+</template>
+
+<template name="addPost">
+    <form class="js-add-post">
+        <div class="form-group panel-group col-md-6 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">Post</div>
+            </div>
+            <textarea id="posttext" class="form-control" placeholder="Write your post" rows="6"></textarea>
+            <div class="form-group modal-footer">
+                <button class="btn btn-primary btn-md" name="submit" type="submit">Post</button>
+            </div>
+
+
+        </div>
+    </form>
+</template>
+
+<template name="posts">
+    {{#each posts}}
+    <div class="container" id={{_id}}>
+        <div class="panel-group col-md-10">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    {{username}}
+                    <span class="glyphicon glyphicon-remove pull-right btn" aria-hidden="true"></span>
+                </div>
+                <div class="panel-body">{{text}}</div>
+            </div>
+
+        </div>
+    </div>
+        {{/each}}
+</template>
+
+
+<template name="info">
+    <h2>Learn Meteor!</h2>
+    <ul>
+        <li><a href="https://www.meteor.com/try">Do the Tutorial</a></li>
+        <li><a href="http://guide.meteor.com">Follow the Guide</a></li>
+        <li><a href="https://docs.meteor.com">Read the Docs</a></li>
+        <li><a href="https://forums.meteor.com">Discussions</a></li>
+    </ul>
+</template>
